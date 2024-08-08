@@ -5,9 +5,17 @@ import os #FOR Debugging and error checking
 import tkinter as tk #GUI 
 from cryptography.fernet import Fernet # For encryption/decryption
 
+
+
 # Function to switch frames
 def show_frame(frame):
     frame.tkraise()
+
+def generate_key():
+    key = Fernet.generate_key()
+    with open("secret.key", "wb") as key_file:
+        key_file.write(key)
+        
 
 
 # Load the key (must be the same key used for encryption)
@@ -274,6 +282,7 @@ def show_frame(frame):
 container = tk.Frame(root)
 container.pack(side="top", fill="both", expand=True)
 
+
 key = LoadKey() # Load encryption key
 
 # Create a dictionary to hold the different frames
@@ -293,6 +302,6 @@ ListAllPasswords(key) # List all passwords on program start
 
       
 if __name__ == "__main__":  # Check if file is being run directly
-    
+    #generate_key()
     root.mainloop()   # Start UI main loop
 
